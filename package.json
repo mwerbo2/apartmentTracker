@@ -1,0 +1,29 @@
+{
+  "name": "apartmentkeeper",
+  "version": "1.0.0",
+  "description": "### A solution to help organize your 6 roommates in that 2 bedroom apartment. Shared  apartments, especially those with strangers, can cause issues to arise when things pertaining to upkeep effort (who cleans the bathroom this week) and property privacy (who keeps stealing my cheerios) come up. Apartment keeper uses RFID technology and an assortment of add-ons to help roomates track and manage their aparment tasks and belongings.",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mwerbo2/apartmentTracker.git"
+  },
+  "author": "Michael Werbowsky",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/mwerbo2/apartmentTracker/issues"
+  },
+  "homepage": "https://github.com/mwerbo2/apartmentTracker#readme",
+  "dependencies": {
+    "ejs": "^2.5.1",
+    "express": "^4.14.0",
+    "johnny-five": "^0.10.0",
+    "logger": "0.0.1",
+    "morgan": "^1.7.0",
+    "path": "^0.12.7",
+    "serialport": "^4.0.1"
+  }
+}
