@@ -1,8 +1,8 @@
 insert into users (first_name, last_name, tag_id, email, password_digest)
  VALUES
-  ('Michael', 'Werbowsky', '4F0040968A', "mwerbo2@gmail.com", "test"),
-  ('Arlen', 'Cho', '01005A6602', "a@gmail.com", "test"),
-    ('Luis', 'Lithgow', '010059F3E2', "l@gmail.com", "test")
+  ('Michael', 'Werbowsky', '4F0040968A', 'mwerbo2@gmail.com', 'test'),
+  ('Arlen', 'Cho', '01005A6602', 'a@gmail.com', 'test'),
+    ('Luis', 'Lithgow', '010059F3E2', 'l@gmail.com', 'test')
  ;
 
 

@@ -1,6 +1,6 @@
 Drop Table IF EXISTS users CASCADE;
 CREATE TABLE users (
-user_id INTEGER PRIMARY KEY NOT NULL,
+user_id SERIAL PRIMARY KEY NOT NULL,
 first_name TEXT NOT NULL,
 last_name TEXT NOT NULL,
 tag_id VARCHAR NOT NULL,
