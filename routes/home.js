@@ -1,9 +1,17 @@
 const router = require('express').Router();
-const buttonData = require('../models/data')
+const dataModel = require('../models/data')
+
+const sendJSONresp = (req,res)=>res.json(res.rows)
+
+// router.get('/', function(req,res){
+//   res.render('home');
+// })
 
 
-router.get('/', function(req, res){
-  res.render('home')
+router.get('/data', dataModel.getUserById, sendJSONresp);
+
+router.get('/', dataModel.getUserById, function(req, res){
+  res.render('home', {users: res.rows})
 });
 
 // router.get('/data', buttonData.alertHit, function(req, res){
