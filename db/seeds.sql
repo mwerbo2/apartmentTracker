@@ -19,3 +19,10 @@ insert into users (first_name, last_name, tag_id, email, password_digest)
   ('Clean Living Room', 'Dust shelves, sweep under couch', 3, '8/27/16', false),
   ('Organize Closet', 'Shoes, umbrellas and hats', 1, '7/8/16', true)
   ;
+
+
+insert into status (tag_id, user_id, status)
+  VALUES
+  ('4F0040968A', 1, 'checkedin'),
+  ('01005A6602', 2, 'notchecked')
+  ;

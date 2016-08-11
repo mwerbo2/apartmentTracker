@@ -30,3 +30,12 @@ deadline VARCHAR,
 updated_at VARCHAR,
 completed boolean
 );
+
+
+DROP TABLE IF EXISTS status;
+CREATE TABLE status (
+swipe_id SERIAL PRIMARY KEY NOT NULL,
+tag_id VARCHAR NOT NULL,
+user_id INTEGER REFERENCES users (user_id),
+status VARCHAR NOT NULL
+);

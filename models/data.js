@@ -1,5 +1,5 @@
 let serialport = require('serialport');
-let portName = '/dev/cu.usbmodem1411';
+let portName =  '/dev/cu.usbmodem1421';
 let data = {};
 const pg = require('pg-promise')({});
 const config = {
@@ -12,6 +12,22 @@ const config = {
 const _db = pg(config);
 
 //conect to db pg promise
+
+function getUserById(req,res,next){
+    _db.any("select * from users where tag_id = " + "'" + data.id + "'" + ";")
+        .then( users => {
+            res.rows = users;
+            next();
+        })
+        .catch(error => {
+            console.log("error", error);
+        })
+}
+
+function getUserByID() {
+    return _db.any("select * from users where tag_id = " + "'" + data.id + "'" + ";")
+}
+
 
 var sp = new serialport.SerialPort(portName, {
     baudRate: 9600,
@@ -28,28 +44,21 @@ sp.on('data', function(input) {
     };
     console.log("this is the input ", input);
     console.log("this is the data ", data.id)
-    // if (data.id === input){
-    //   console.log("ID= ", input, "Password Accepted!")
 
-      //in this block db.none find their ID and update a column to "active or some shit"
-
-    // }
-    // console.log("this is the id: ", input);
+    getUserByID()
+        .then( result => {
+            console.log('Result', result);
+        })
+        .catch(error => {
+            console.log("error", error);
+        })
 });
 
+// function taskComplete(req,res,next) {
+//   put sp.on() in here when using routes with RFID activity
+// }
 
 
 
-module.exports = {
-    getUserById(req,res,next){
-        _db.any("select * from users where tag_id = " + "'" + data.id + "'" + ";")
-            .then( users => {
-                res.rows = users;
-                next();
-            })
-            .catch(error => {
-                console.log("error", error);
-            })
-    }
-}
+module.exports = { getUserById }
 
