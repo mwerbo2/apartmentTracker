@@ -8,15 +8,25 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 </head>
 <body>
-  <header>
-    <h1>Apartment Tracker</h1>
+  <div class="text-center">
+    <h1>Home Automator</h1>
+  <br>
     <h2>Welcome <%= users[0].first_name %></h2>
-  </header>
-  <form action="">
-    <input type="text">
-    <input type="text">
-    <input type="text">
-    <input type="submit">
-  </form>
+  </div>
+  <div class="text-center">
+  <form action="/r" method="post">
+  <label for="">First Name: </label>
+  <input type="text" name="first_name"><br>
+  <label for="">Last Name: </label>
+  <input type="text" name="last_name"><br>
+  <input type="submit" value="Add User">
+</form>
+<!-- <h2>List of All Users</h2> -->
+<!--   <ul>
+    <% users.forEach( user => { %>
+    <li><a href="/user/<%= user.user_id %>"><%= user.first_name %> <%= user.last_name %></a></li>
+    <% }); %>
+  </ul> -->
+  </div>
 </body>
 </html>

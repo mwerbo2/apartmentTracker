@@ -28,7 +28,7 @@ function getUserByID() {
     return _db.any("select * from users where tag_id = " + "'" + data.id + "'" + ";")
 }
 
-
+// let led = pin(13);
 var sp = new serialport.SerialPort(portName, {
     baudRate: 9600,
     dataBits: 8,
