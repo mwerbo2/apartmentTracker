@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const dataModel = require('../models/data')
+const userModel = require('../models/user')
 
 const sendJSONresp = (req,res)=>res.json(res.rows)
 
@@ -8,11 +8,12 @@ const sendJSONresp = (req,res)=>res.json(res.rows)
 // })
 
 
-// router.get('/data', dataModel.getUserById, sendJSONresp);
 
-router.get('/', dataModel.getUserById, function(req, res){
-  res.render('home', {users: res.rows})
-});
+
+router.post('/new', userModel.createUser, function(req,res){
+  console.log("made it to the user route")
+  res.redirect('/')
+})
 
 // router.get('/data', buttonData.alertHit, function(req, res){
 //   console.log("made it to the button route")

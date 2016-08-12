@@ -3,7 +3,7 @@ CREATE TABLE users (
 user_id SERIAL PRIMARY KEY NOT NULL,
 first_name TEXT NOT NULL,
 last_name TEXT NOT NULL,
-tag_id VARCHAR NOT NULL,
+tag_id VARCHAR,
 email VARCHAR NOT NULL,
 password_digest VARCHAR NOT NULL
 );
