@@ -42,19 +42,33 @@ sp.on('data', function(input) {
     data = {
       id:  input,
     };
+  function grabReadings() {
+    if (input.includes("Voltage=")) {
+      let volts = (input.split("= "))[1]
+      console.log("Volts = ", volts)
+    };
+    if (input.includes("Humidity")) {
+      let humidity = (input.split("= "))[1]
+    console.log("Humidity = ", humidity)
+    }
+    if (input.includes("Temperature")) {
+      celsiusTemp = (input.split("= "))[1]
+      celciusToFarenheight(celsiusTemp)
+    }
+    if (input.includes("Tag")) {
+      let tag = input.split("= ")[1]
+    console.log("Tag ID = ", tag)
+    }
+  }
 
-   if (input.includes("Voltage=")) {
-      console.log(input.split("= "))
-   };
-   if (input.includes("Humidity")) {
-    console.log(input.split("= "))
+grabReadings()
+
+  function celciusToFarenheight(temp) {
+    let tempInt = parseInt(temp)
+    farenheight = (((tempInt * 9) / 5) + 32)
+     console.log("Temperature = ", farenheight)
    }
-   if (input.includes("Temperature")) {
-    console.log(input.split("= "))
-   }
-   if (input.includes("Tag")) {
-    console.log(input.split("= "))
-   }
+
 
 
     getUserByID()
