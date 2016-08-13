@@ -26,3 +26,12 @@ insert into status (tag_id, user_id, status)
   ('4F0040968A', 1, 'checkedin'),
   ('01005A6602', 2, 'notchecked')
   ;
+
+  insert into readings (reading_type, reading_value)
+    VALUES
+    ('Volts', 754),
+    ('Temperature', 80.6),
+    ('Humidity', 58.3),
+    ('Tag', '4F0040969F')
+    ;
+

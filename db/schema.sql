@@ -39,3 +39,11 @@ tag_id VARCHAR NOT NULL,
 user_id INTEGER REFERENCES users (user_id),
 status VARCHAR NOT NULL
 );
+
+DROP TABLE IF EXISTS readings;
+CREATE TABLE readings (
+reading_id SERIAL PRIMARY KEY NOT NULL,
+sensor VARCHAR,
+reading_type VARCHAR,
+reading_value VARCHAR NOT NULL
+);

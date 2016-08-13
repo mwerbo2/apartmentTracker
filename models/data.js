@@ -28,6 +28,8 @@ function getUserByID() {
     return _db.any("select * from users where tag_id = " + "'" + data.id + "'" + ";")
 }
 
+
+
 // let led = pin(13);
 var sp = new serialport.SerialPort(portName, {
     baudRate: 9600,
@@ -42,13 +44,17 @@ sp.on('data', function(input) {
     data = {
       id:  input,
     };
+    let volts;
+    let humidity;
+    let celsiusTemp;
+    let tag;
   function grabReadings() {
     if (input.includes("Voltage=")) {
-      let volts = (input.split("= "))[1]
+      volts = (input.split("= "))[1]
       console.log("Volts = ", volts)
     };
     if (input.includes("Humidity")) {
-      let humidity = (input.split("= "))[1]
+      humidity = (input.split("= "))[1]
     console.log("Humidity = ", humidity)
     }
     if (input.includes("Temperature")) {
@@ -56,7 +62,7 @@ sp.on('data', function(input) {
       celciusToFarenheight(celsiusTemp)
     }
     if (input.includes("Tag")) {
-      let tag = input.split("= ")[1]
+      tag = input.split("= ")[1]
     console.log("Tag ID = ", tag)
     }
   }
@@ -70,7 +76,17 @@ grabReadings()
    }
 
 
+  function saveDataToDb() {
+    _db.none("INSERT INTO readings (reading_type, reading_value) VALUES " + "(" + "'Volts'" + "," + "'" + volts + "'" + ")" + ";")
+    .then( results => {
+      console.log("successfully saved volts")
+    })
+    .catch(error => {
+      console.log("error saving volts", error);
+    })
+  }
 
+    saveDataToDb()
     getUserByID()
         .then( result => {
             // console.log('Result', result);
