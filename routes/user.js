@@ -12,7 +12,7 @@ const sendJSONresp = (req,res)=>res.json(res.rows)
 
 router.post('/new', userModel.createUser, function(req,res){
   console.log("made it to the user route")
-  res.redirect('/')
+  res.render('profile')
 })
 
 // router.get('/data', buttonData.alertHit, function(req, res){
