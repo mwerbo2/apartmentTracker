@@ -41,22 +41,25 @@ var sp = new serialport.SerialPort(portName, {
 sp.on('data', function(input) {
     data = {
       id:  input,
-      voltage: "something"
     };
 
    if (input.includes("Voltage=")) {
-      console.log(input.split("="))
+      console.log(input.split("= "))
+   };
+   if (input.includes("Humidity")) {
+    console.log(input.split("= "))
    }
-    console.log(input);
-    console.log(input.includes("Humidity "));
-    console.log(input);
-    console.log(input.includes("Temperature "));
+   if (input.includes("Temperature")) {
+    console.log(input.split("= "))
+   }
+   if (input.includes("Tag")) {
+    console.log(input.split("= "))
+   }
 
-    // console.log("this is the data ", data.id)
 
     getUserByID()
         .then( result => {
-            console.log('Result', result);
+            // console.log('Result', result);
         })
         .catch(error => {
             console.log("error", error);
