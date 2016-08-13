@@ -40,10 +40,19 @@ var sp = new serialport.SerialPort(portName, {
 
 sp.on('data', function(input) {
     data = {
-      id:  input
+      id:  input,
+      voltage: "something"
     };
-    console.log("this is the input ", input);
-    console.log("this is the data ", data.id)
+
+   if (input.includes("Voltage=")) {
+      console.log(input.split("="))
+   }
+    console.log(input);
+    console.log(input.includes("Humidity "));
+    console.log(input);
+    console.log(input.includes("Temperature "));
+
+    // console.log("this is the data ", data.id)
 
     getUserByID()
         .then( result => {

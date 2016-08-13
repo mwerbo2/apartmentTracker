@@ -76,7 +76,7 @@ void loop()
 int v = analogRead(LDR);
    Serial.print("Voltage= ");
    Serial.println(v);
-   delay(1000);
+   delay(10000);
  //For temperature and humidity sensor
   int chk = DHT.read11(DHT11_PIN);
   Serial.print("Temperature = ");
