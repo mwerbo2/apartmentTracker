@@ -40,13 +40,15 @@ var sp = new serialport.SerialPort(portName, {
     parser: serialport.parsers.readline("\r\n")
 });
 
+    let Volts;
+    let Humidity;
+    let Temperature;
+    let farenheight;
 sp.on('data', function(input) {
     data = {
       id:  input,
     };
-    let Volts;
-    let Humidity;
-    let Temperature;
+
     let tag;
   function grabReadings() {
     if (input.includes("Voltage=")) {
@@ -59,6 +61,7 @@ sp.on('data', function(input) {
     }
     if (input.includes("Temperature")) {
       Temperature = (input.split("= "))[1]
+      console.log(Temperature, "is it")
       celciusToFarenheight(Temperature)
     }
     if (input.includes("Tag")) {
@@ -75,6 +78,7 @@ grabReadings()
      console.log("Temperature = ", farenheight)
    }
 
+// console.log("Temperature = ", farenheight)
 
   function saveVoltsToDb() {
     _db.none("INSERT INTO readings (reading_type, reading_value) VALUES " + "(" + "'Volts'" + "," + "'" + Volts + "'" + ")" + ";")
@@ -85,8 +89,8 @@ grabReadings()
       console.log("error saving volts", error);
     })
   }
-function updateReading(value) {
-  _db.any("UPDATE readings SET reading_value =" + "'" + value + "'" + " WHERE reading_type= " + "'" + value + "'"+";")
+function updateReading(value, sensor) {
+  _db.any("UPDATE readings SET reading_value =" + "'" + value + "'" + " WHERE reading_type= " + "'" + sensor + "'"+";")
     .then( data => {
       console.log('Update successful!');
     })
@@ -94,9 +98,50 @@ function updateReading(value) {
       console.log('Error ',error);
     });
 }
+
+function updateVoltReading(v) {
+  _db.any("UPDATE readings SET reading_value =" + "'" + v + "'" + " WHERE reading_type= "+ "'Volts'"+";")
+    .then( data => {
+      // console.log('Update successful!');
+    })
+    .catch( error => {
+      console.log('Error ',error);
+    });
+}
+
+function updateTempReading(t) {
+  _db.any("UPDATE readings SET reading_value =" + "'" + t + "'" + " WHERE reading_type= "+ "'Temperature'"+";")
+    .then( data => {
+      // console.log('Update successful!');
+    })
+    .catch( error => {
+      console.log('Error ',error);
+    });
+}
+
+function updateHumidityReading(h) {
+  _db.any("UPDATE readings SET reading_value =" + "'" + h + "'" + " WHERE reading_type= "+ "'Humidity'"+";")
+    .then( data => {
+      // console.log("humidity: ", data);
+    })
+    .catch( error => {
+      console.log('Error ',error);
+    });
+}
+
+
+
+
+
     // saveVoltsToDb();
-    console.log("These are my volts", Volts)
-    updateReading(Volts)
+updateVoltReading(Volts);
+console.log("this temp", farenheight)
+updateTempReading(farenheight);
+updateHumidityReading(Humidity)
+    // updateReading(Volts, 'Volts')
+    // updateReading(Temperature, 'Temperature')
+    // updateReading(Humidity, 'Humidity')
+
     getUserByID()
         .then( result => {
             // console.log('Result', result);
