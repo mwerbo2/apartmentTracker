@@ -1,5 +1,5 @@
 let serialport = require('serialport');
-let portName =  '/dev/cu.usbmodem1421';
+let portName =  '/dev/cu.usbmodem1411';
 let data = {};
 const pg = require('pg-promise')({});
 const config = {
@@ -23,7 +23,7 @@ function getUserById(req,res,next){
             console.log("error", error);
         })
 }
-
+//Returning user by RFID
 function getUserByID() {
     return _db.any("select * from users where tag_id = " + "'" + data.id + "'" + ";")
 }
@@ -44,22 +44,22 @@ sp.on('data', function(input) {
     data = {
       id:  input,
     };
-    let volts;
-    let humidity;
-    let celsiusTemp;
+    let Volts;
+    let Humidity;
+    let Temperature;
     let tag;
   function grabReadings() {
     if (input.includes("Voltage=")) {
-      volts = (input.split("= "))[1]
-      console.log("Volts = ", volts)
+      Volts = (input.split("= "))[1]
+      console.log("Volts = ", Volts)
     };
     if (input.includes("Humidity")) {
-      humidity = (input.split("= "))[1]
-    console.log("Humidity = ", humidity)
+      Humidity = (input.split("= "))[1]
+    console.log("Humidity = ", Humidity)
     }
     if (input.includes("Temperature")) {
-      celsiusTemp = (input.split("= "))[1]
-      celciusToFarenheight(celsiusTemp)
+      Temperature = (input.split("= "))[1]
+      celciusToFarenheight(Temperature)
     }
     if (input.includes("Tag")) {
       tag = input.split("= ")[1]
@@ -77,7 +77,7 @@ grabReadings()
 
 
   function saveVoltsToDb() {
-    _db.none("INSERT INTO readings (reading_type, reading_value) VALUES " + "(" + "'Volts'" + "," + "'" + volts + "'" + ")" + ";")
+    _db.none("INSERT INTO readings (reading_type, reading_value) VALUES " + "(" + "'Volts'" + "," + "'" + Volts + "'" + ")" + ";")
     .then( results => {
       console.log("successfully saved volts")
     })
@@ -85,8 +85,18 @@ grabReadings()
       console.log("error saving volts", error);
     })
   }
-
-    saveDataToDb()
+function updateReading(value) {
+  _db.any("UPDATE readings SET reading_value =" + "'" + value + "'" + " WHERE reading_type= " + "'" + value + "'"+";")
+    .then( data => {
+      console.log('Update successful!');
+    })
+    .catch( error => {
+      console.log('Error ',error);
+    });
+}
+    // saveVoltsToDb();
+    console.log("These are my volts", Volts)
+    updateReading(Volts)
     getUserByID()
         .then( result => {
             // console.log('Result', result);

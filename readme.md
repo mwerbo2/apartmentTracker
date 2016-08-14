@@ -36,3 +36,15 @@ RFID Reader and Tags
 - Psql
 - React
 - Node
+
+
+###Sources
+
+Photoresistor Arduino Sketch
+https://blog.udemy.com/arduino-ldr/
+
+DHT11 Temperature and Humidity Sensor Sketch
+http://playground.arduino.cc/Main/DHT11Lib
+http://www.circuitbasics.com/how-to-set-up-the-dht11-humidity-sensor-on-an-arduino/
+
+
