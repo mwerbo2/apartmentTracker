@@ -76,7 +76,7 @@ grabReadings()
    }
 
 
-  function saveDataToDb() {
+  function saveVoltsToDb() {
     _db.none("INSERT INTO readings (reading_type, reading_value) VALUES " + "(" + "'Volts'" + "," + "'" + volts + "'" + ")" + ";")
     .then( results => {
       console.log("successfully saved volts")
