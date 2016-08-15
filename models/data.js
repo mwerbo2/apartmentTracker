@@ -30,6 +30,7 @@ function getUserByID() {
 
 
 
+
 // let led = pin(13);
 var sp = new serialport.SerialPort(portName, {
     baudRate: 9600,
@@ -133,6 +134,9 @@ function updateHumidityReading(h) {
 
 
 
+
+
+
     // saveVoltsToDb();
 updateVoltReading(Volts);
 console.log("this temp", farenheight)
@@ -151,11 +155,25 @@ updateHumidityReading(Humidity)
         })
 });
 
+function getReadingsData(req,res,next) {
+  _db.many("select * from readings;")
+    .then( results => {
+      res.rows = results;
+      console.log(results);
+      next();
+    })
+    .catch(error => {
+      console.log("Error getting readings ", error);
+    })
+}
+
+// getReadingsData()
+
 // function taskComplete(req,res,next) {
 //   put sp.on() in here when using routes with RFID activity
 // }
 
 
 
-module.exports = { getUserById }
+module.exports = { getUserById, getReadingsData }
 
