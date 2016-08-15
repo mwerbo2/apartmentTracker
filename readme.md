@@ -1,16 +1,14 @@
 
-##Apartment Keeper
+##Home Keeper
 
 ###
-A solution to help organize your 6 roommates in that 2 bedroom apartment. Shared  apartments, especially those with strangers, can cause issues to arise when things pertaining to upkeep effort (who cleans the bathroom this week) and property privacy (who keeps stealing my cheerios) come up. Apartment keeper uses RFID technology and an assortment of add-ons to help roomates track and manage their aparment tasks and belongings. 
+Home keeper allows users to track their home environment. 
 
 
 ###User Story
-Users will be given a RFID tag, readers and servo-locks that they will be able to install throughout the apartment, wherever they want to have something tracked and secured. 
+Users can log in, then view their current temperature, humidity, light level, and blind open/close status. 
 
-Users will then be able to register their profile. Once logged in, they will be register the items and rooms they would like to have tracked. 
 
-Once registered they can then set tasks / permissions: prompting the rest of the users when and what they are responsible to do, ex: Roommate B needs to clean the bathroom next week. When Roommate B goes to clean the bathroom next week, all he needs to do is touch his rfid tag to the reader in the bathroom and it will automatically log that has been completed. 
 
 
 ###WireFrame
@@ -30,9 +28,22 @@ Your Permissions
 
 ###Technologies Used
 
-RFID Reader and Tags
-![](http://i.imgur.com/rbtPhil.png)
+DHT11 Temperature and Humidity Sensor
+
+
 
 - Psql
 - React
 - Node
+
+
+###Sources
+
+Photoresistor Arduino Sketch
+https://blog.udemy.com/arduino-ldr/
+
+DHT11 Temperature and Humidity Sensor Sketch
+http://playground.arduino.cc/Main/DHT11Lib
+http://www.circuitbasics.com/how-to-set-up-the-dht11-humidity-sensor-on-an-arduino/
+
+

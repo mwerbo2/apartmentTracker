@@ -1,0 +1,18 @@
+body {
+/*  background-image: url('https://www.arkamys.com/wp-content/uploads/2014/09/Arkamys_connected_home.jpg')
+  font: white;*/
+}
+
+.logo {
+  height: 170px;
+  width: 200px;
+}
+
+body {
+  background-color: grey;
+}
+
+#volts {
+  margin-top: 30px;
+  padding-top: 30px;
+}
