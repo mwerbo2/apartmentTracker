@@ -26,6 +26,7 @@ int LDR = 0;
  
 void setup() 
 {
+  pinMode(13, OUTPUT);
   // RFID reader SOUT pin connected to Serial RX pin at 2400bps
   RFIDReader.begin(RFIDSerialRate);
    //Photoresistor setup
@@ -51,6 +52,10 @@ void setup()
 
 void loop() 
 {
+   digitalWrite(13, HIGH);   // turn the LED on (HIGH is the voltage level)
+  delay(100);              // wait for a second
+  digitalWrite(13, LOW);    // turn the LED off by making the voltage LOW
+  delay(0); 
   if(RFIDReader.available() > 0) // If data available from reader
   { 
     ReadSerial(RFIDTAG);  //Read the tag number from the reader. Should return a 10 digit serial number
