@@ -1,5 +1,5 @@
 let serialport = require('serialport');
-let portName =  '/dev/cu.usbmodem1411';
+let portName =  '/dev/cu.usbmodem1421';
 let data = {};
 const pg = require('pg-promise')({});
 const config = {
@@ -27,8 +27,6 @@ function getUserById(req,res,next){
 function getUserByID() {
     return _db.any("select * from users where tag_id = " + "'" + data.id + "'" + ";")
 }
-
-
 
 
 // let led = pin(13);
