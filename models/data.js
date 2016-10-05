@@ -1,5 +1,5 @@
 let serialport = require('serialport');
-let portName =  '/dev/cu.usbmodem1411';
+let portName =  '/dev/cu.usbmodem1421';
 let data = {};
 const pg = require('pg-promise')({});
 const config = {
@@ -29,8 +29,6 @@ function getUserByID() {
 }
 
 
-
-
 // let led = pin(13);
 var sp = new serialport.SerialPort(portName, {
     baudRate: 9600,
@@ -45,12 +43,14 @@ var sp = new serialport.SerialPort(portName, {
     let Humidity;
     let Temperature;
     let farenheight;
+
 sp.on('data', function(input) {
     data = {
       id:  input,
     };
 
     let tag;
+
   function grabReadings() {
     if (input.includes("Voltage=")) {
       Volts = (input.split("= "))[1]
@@ -90,6 +90,7 @@ grabReadings()
       console.log("error saving volts", error);
     })
   }
+
 function updateReading(value, sensor) {
   _db.any("UPDATE readings SET reading_value =" + "'" + value + "'" + " WHERE reading_type= " + "'" + sensor + "'"+";")
     .then( data => {
@@ -167,11 +168,8 @@ function getReadingsData(req,res,next) {
     })
 }
 
-// getReadingsData()
+//Environmental Preferences
 
-// function taskComplete(req,res,next) {
-//   put sp.on() in here when using routes with RFID activity
-// }
 
 
 
