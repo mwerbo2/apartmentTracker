@@ -6,7 +6,7 @@
 
 dht DHT;
 
-#define DHT11_PIN 7
+#define DHT11_PIN 2
 
 //Parallax RFID Reader 
 #define RFIDEnablePin 2 //Pin that enables reading. Set as OUTPUT and LOW to read an RFID tag

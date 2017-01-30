@@ -1,5 +1,5 @@
 let serialport = require('serialport');
-let portName =  '/dev/cu.usbmodem1421';
+let portName =  '/dev/cu.usbmodem1411';
 let data = {};
 const pg = require('pg-promise')({});
 const config = {
@@ -174,4 +174,10 @@ function getReadingsData(req,res,next) {
 
 
 module.exports = { getUserById, getReadingsData }
+
+
+
+
+
+
 
